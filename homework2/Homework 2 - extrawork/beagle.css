@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(250, 248, 242);
+}
+
+.desc-wrap {
+    max-width: 600px;
+    margin: 50px auto;
+    display: flex;
+}
+
+.desc-wrap div {
+    padding: 20px;
+}
+
+.left-col {
+    width: 30%;
+    float: left;
+    border-right: 1px solid lightgray
+}
+
+.right-col {
+    width: 70%;
+    float: right;
+}
+
+.left-col p {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.left-col p.active {
+    color: blue;
+}
+
+.right-col img {
+    border-radius: 50%;
+    border: 2px solid lightgray;
+    padding: 10px;
+    max-width: 100px;
+    margin: 0 auto;
+    display: block;
+    background-color: #fff;
+}
+
+.right-col h2 {
+    margin: 10px 0;
+}
+
+.right-col table td {
+    padding: 5px 10px 5px 0;
+}
+
+.right-col p {
+    margin-top: 30px;
+}
