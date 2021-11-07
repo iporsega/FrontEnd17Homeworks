@@ -19,13 +19,11 @@ body {
 
 .left-col {
     width: 30%;
-    float: left;
     border-right: 1px solid lightgray
 }
 
 .right-col {
     width: 70%;
-    float: right;
 }
 
 .left-col p {
