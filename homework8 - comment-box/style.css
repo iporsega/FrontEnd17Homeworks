@@ -1,0 +1,108 @@
+/* general styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, .msg-box input, .msg-box textarea {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+/* page title styles */
+
+.page-title {
+    background: url(image.jpg) no-repeat center/cover;
+    min-height: 350px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 30px;
+    position: relative;
+}
+
+.page-title:after {
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background: linear-gradient(transparent, #fff);
+}
+
+.page-title img {
+    width: 200px;
+    z-index: 1;
+}
+
+/* form styles */
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 100px auto;
+    display: flex;
+    border: 1px solid #f5f5f5;
+}
+
+.content-wrapper > div {
+    max-width: 50%;
+    padding: 50px;
+}
+
+.msg-box {
+    background: #f5f5f5;
+}
+
+.msg-box input, .msg-box textarea {
+    height: 40px;
+    border: 2px solid #f5f5f5;
+    padding: 10px;
+    width: calc(50% - 10px);
+    float: left;
+    margin-top: 20px;
+    color: #000;
+    border: 1px solid #999;
+}
+
+.msg-box input:first-child {
+    margin-right: 20px;
+}
+
+.msg-box textarea {
+    height: auto;
+    width: 100%;
+}
+
+.msg-box input::placeholder, .msg-box textarea::placeholder {
+    color: #ccc;
+}
+
+.rating__star:hover {
+    cursor: pointer;
+}
+
+.fa, .fas {
+    color: #e1e117;
+}
+
+button {
+    background: #528739;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 30px;
+    border: 0;
+    margin-top: 20px;
+    float: right;
+}
+
