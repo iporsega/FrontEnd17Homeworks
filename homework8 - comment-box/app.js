@@ -1,26 +1,3 @@
-// rating stars
-
-var ratingStars = [...document.getElementsByClassName("rating__star")];
-
-function executeRating(stars) {
-    var starClassActive = "rating__star fas fa-star";
-    var starClassInactive = "rating__star far fa-star";
-    var starsLength = stars.length;
-    var i;
-    stars.map((star) => {
-        star.onclick = () => {
-            i = stars.indexOf(star);
-            
-            if (star.className===starClassInactive) {
-                for (i; i >= 0; --i) stars[i].className = starClassActive;
-            } else {
-                for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
-            }
-        };
-    });
-}
-executeRating(ratingStars);
-
 // create the variables 
 
 var inputFullName = document.querySelector("#name");
@@ -29,14 +6,13 @@ var inputMessage = document.querySelector("#message");
 
 // create the array for the messages:
 
-function UserMessage(img, rating, fullName, country, message) {
-    this.rating = rating;
+function UserMessage(img, fullName, country, message) {
     this.img = img;
     this.fullName = fullName;
     this.country = country;
     this.message = message;
     this.showInfo = function() {
-        return "<img src='" + this.img + "'>" + "<br>" + this.rating + "<br>" + "<h5>" + this.fullName + "</h5>" + "<small>" + this.country + "</small>" + "<p>" + this.message + "</p>" + "<button class='remove-comment'>Remove Comment</button>";
+        return "<div class='user-comment'><img src='" + this.img + "'>" + "<br>" + "<h5>" + this.fullName + "</h5>" + "<small>" + this.country + "</small>" + "<p>" + this.message + "</p>" + "<button class='remove-comment'>Remove Comment</button></div>";
     }
 }
 
@@ -45,9 +21,7 @@ function UserMessage(img, rating, fullName, country, message) {
 var allMsg = document.querySelector(".all-msg");
 allMsg.innerHTM = "";
 
-var userComment = document.createElement("div");
-userComment.classList.add("user-comment");
-allMsg.appendChild(userComment);
+allMsg.addEventListener('click', removeComment);
 
 // call the function when the button is clicked:
 
@@ -60,24 +34,39 @@ var messages = [];
 var output = "";
 
 function showInfo () {
-    for(var i = 0; i < messages.length; i++) {  
-        output +=  messages[i].showInfo() + "<br>";
-    }
-    userComment.innerHTML = output;
+    output += messages[messages.length - 1].showInfo() + "<br>";
+    allMsg.innerHTML = output;
 }
 
-function addComment() {
-    var message = new UserMessage ("https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/:/128", ratingStars.value, inputFullName.value, inputCountry.value, inputMessage.value);
-    messages.push(message);
-    showInfo();
+function clearFields() {
+    inputFullName.value = '';
+    inputCountry.value = '';
+    inputMessage.value = '';
+}
+
+function addComment(e) { 
+    var errorMessage = document.createElement("p");
+    errorMessage.classList.add("error");
+    var msgBox = document.querySelector(".msg-box");
+    errorMessage.innerHTML = "";
+    msgBox.appendChild(errorMessage);
+    if (inputFullName.value == "" || inputFullName.value == null || inputCountry.value == "" || inputCountry.value == null || inputMessage.value == "" || inputMessage.value == null) {
+        errorMessage.innerHTML = "Please fill out all fields.";
+    } else {
+        e.preventDefault();
+        errorMessage.html = "";
+        var message = new UserMessage ("https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/:/128", inputFullName.value, inputCountry.value, inputMessage.value);
+        messages.push(message);
+        showInfo();
+        clearFields();
+    }
 }
 
 // remove current comment
-    
-var removeComm = document.createElement("button");
-removeComm.classList.add("remove-comment");
-removeComm.innerHTML = "Remove Comment";
-removeComm.addEventListener("click", removeSingleComment);
-function removeSingleComment() {
-}
 
+function removeComment(e) {
+    if(e.target.classList.contains("remove-comment") == true) {
+        console.log(e.target.parentNode)
+        e.target.parentNode.remove();
+    }
+}
